@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Page() {
-  const [position, setPosition] = useState(null);
+  // 1-XATO YECHIMI: position qanday qiymat qabul qilishini (TS type) aniq yozamiz
+  const [position, setPosition] = useState<{ top: string; left: string } | null>(null);
 
-  const moveButton = (e) => {
+  // 2-XATO YECHIMI: 'e' (event) parametriga 'any' turini beramiz
+  const moveButton = (e: any) => {
     if (e && e.type === 'touchstart') {
       e.preventDefault();
     }
@@ -32,26 +33,19 @@ export default function Page() {
 
   return (
     <main className="relative flex flex-col items-center justify-center min-h-dvh w-full bg-gradient-to-b from-pink-100 via-rose-50 to-pink-100 px-4 py-6 select-none overflow-hidden touch-none">
-      <div className="relative w-full max-w-[320px] sm:max-w-[400px] h-48 sm:h-60 mb-6 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/80 mb-15">
-        <Image
-          src="/yesorno.jpeg" 
-          alt="Valentine Illustration"
-          fill
-          priority
-          className="object-cover"
-        />
-      </div>
-      <div className="text-center max-w-xs sm:max-w-md mb-8">
+      
+      {/* Sarlavha */}
+      <div className="text-center max-w-xs sm:max-w-md mb-8 mt-12">
         <h1 className="text-2xl sm:text-3xl font-black text-rose-600 tracking-tight drop-shadow-sm">
-           Will you go on a date with me ? ❤️
+          Will you go on a date with me ? ❤️
         </h1>
       </div>
 
-      <div className="flex flex-row items-center justify-center gap-15 w-full max-w-sm">
+      <div className="flex flex-row items-center justify-center gap-5 w-full max-w-sm">
         
         <Link
           href="/yes"
-          className="group relative flex items-center justify-center w-36 sm:w-44 h-16 sm:h-20 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 rounded-3xl text-xl sm:text-2xl text-white font-extrabold shadow-[0_10px_25px_-5px_rgba(244,63,94,0.5)] border-t-2 border-white/40 active:translate-y-1 active:shadow-md transition-all duration-200"
+          className="group relative flex items-center justify-center w-36 sm:w-44 h-16 sm:h-20 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 rounded-3xl text-xl sm:text-2xl text-white font-extrabold shadow-lg border-t-2 border-white/40 active:translate-y-1 transition-all duration-200 cursor-pointer"
         >
           <span className="flex items-center gap-1.5 drop-shadow">
             YES 💖
@@ -73,7 +67,7 @@ export default function Page() {
                 }
               : undefined
           }
-          className="relative flex items-center justify-center w-36 sm:w-44 h-16 sm:h-20 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-3xl text-xl sm:text-2xl text-white font-extrabold shadow-[0_10px_25px_-5px_rgba(79,70,229,0.4)] border-t-2 border-white/40 active:translate-y-1 transition-all duration-200"
+          className="relative flex items-center justify-center w-36 sm:w-44 h-16 sm:h-20 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-3xl text-xl sm:text-2xl text-white font-extrabold shadow-lg border-t-2 border-white/40 transition-all duration-200 select-none cursor-pointer"
         >
           <span className="flex items-center gap-1.5 drop-shadow">
             NO 💔
