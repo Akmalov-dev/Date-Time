@@ -5,24 +5,24 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 const foodOptions = [
   { id: 1, name: 'Burger', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80', icon: '🍔' },
-  { id: 2, name: 'Pitsa', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80', icon: '🍕' },
-  { id: 3, name: 'Sushi', image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=500&q=80', icon: '🍣' },
-  { id: 4, name: 'Osh', image: 'https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=500&q=80', icon: '🍚' },
-  { id: 5, name: 'Shashlik', image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80', icon: '🥩' },
-  { id: 6, name: 'Muzqaymoq', image: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=500&q=80', icon: '🍦' },
+  { id: 2, name: 'Pizza', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80', icon: '🍕' },
+  { id: 3, name: 'Roll', image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=500&q=80', icon: '🍣' },
+  { id: 4, name: 'Plov', image: 'https://images.unsplash.com/photo-1633964913295-ceb43826e7c9?w=500&q=80', icon: '🍚' },
+  { id: 5, name: 'Kebab', image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80', icon: '🥩' },
+  { id: 6, name: 'Ice-cream', image: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=500&q=80', icon: '🍦' },
 ];
 
 function MenuContent() {
   const searchParams = useSearchParams();
-  const router = useRouter(); // Link o'rniga ishlatamiz
+  const router = useRouter(); 
 
-  // 1. OLDINGI SAHIFADAN SANA VA VAQTNI USHLAB OLAMIZ
+
   const date = searchParams.get('date') || 'Kiritilmadi';
   const time = searchParams.get('time') || 'Kiritilmadi';
 
   const [selectedFoodId, setSelectedFoodId] = useState(null);
 
-  // 2. TUGMA BOSILGANDA UCHALASINI HAM FINAL SAHIFAGA JO'NATAMIZ
+ 
   const handleNext = () => {
     if (!selectedFoodId) {
       alert("Iltimos, nima yeyishimizni tanlang! 🍕");
@@ -31,7 +31,7 @@ function MenuContent() {
 
     const selectedFoodName = foodOptions.find(f => f.id === selectedFoodId)?.name || '';
 
-    // E'TIBOR BERING: food, date va time - barchasi urlga tirkalyapti!
+
     const targetUrl = `/final?food=${encodeURIComponent(selectedFoodName)}&date=${encodeURIComponent(date)}&time=${encodeURIComponent(time)}`;
     
     // Final sahifaga yo'naltirish
@@ -42,7 +42,7 @@ function MenuContent() {
     <div className="w-full max-w-md bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-8 shadow-xl border border-orange-200">
       <div className="text-center mb-6">
         <div className="text-5xl mb-3 animate-bounce">🤤</div>
-        <h1 className="text-2xl sm:text-3xl font-black text-orange-600 mb-2">Nima yeymiz?</h1>
+        <h1 className="text-2xl sm:text-3xl font-black text-orange-600 mb-2">What we gonna eat ?</h1>
       </div>
       
       <div className="grid grid-cols-2 gap-3 mb-6 max-h-[50vh] overflow-y-auto p-1 custom-scrollbar">
@@ -71,13 +71,12 @@ function MenuContent() {
             : 'bg-gray-200 text-gray-400'
         }`}
       >
-        Tayyor ✨
+        Next ✨
       </button>
     </div>
   );
 }
 
-// Next.js da searchParams ishlashi uchun Suspense majburiy
 export default function MenuPage() {
   return (
     <main className="flex items-center justify-center min-h-dvh bg-orange-50 px-4 py-8">
