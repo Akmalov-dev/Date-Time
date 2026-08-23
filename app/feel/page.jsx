@@ -81,7 +81,7 @@ function MenuContent() {
 export default function MenuPage() {
   return (
     <main className="flex items-center justify-center min-h-dvh bg-orange-50 px-4 py-8">
-      <Suspense fallback={<div className="text-orange-500 font-bold">Yuklanmoqda...</div>}>
+      <Suspense fallback={<div className="text-orange-510 font-bold">Yuklanmoqda...</div>}>
         <MenuContent />
       </Suspense>
     </main>
